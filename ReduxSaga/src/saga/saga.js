@@ -1,5 +1,5 @@
 import { FETCH_ALBUM, FETCH_ALBUM_SUCCESS, FETCH_ALBUM_FAILED } from '../actions/types';
-import { put, takeEvery, call } from 'redux-saga/effects'
+import { put, takeEvery, call, fork } from 'redux-saga/effects'
 import { fetchAlbum } from '../api/api';
 
 
@@ -15,8 +15,15 @@ function* fetchData() {
 }
 
 function* rootSaga() {
-    yield takeEvery(FETCH_ALBUM, fetchData);
+    // yield takeEvery(FETCH_ALBUM, fetchData);
+    // while(true) {
+    //   yield fetchData;
+    // }
 
+    // yield [
+    //   fork(fetchData)
+    // ]
+    fork(fetchData);
 }
 
 export default rootSaga;

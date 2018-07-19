@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { FlatList } from 'react-native';
 import axios from 'axios';
 import AlbumDetail from './AlbumDetail';
 import { connect } from 'react-redux';
@@ -25,9 +25,14 @@ class AlbumList extends Component {
 
 
     return (
-      <ScrollView>
-        {this.renderAlbums()}
-      </ScrollView>
+      <FlatList
+        data={this.props.data}
+        renderItem={({item}) => {
+                        return <AlbumDetail key={item.title} album={item} />
+                    }}
+        keyExtractor={item => item.title}
+      />
+
     );
   }
 }
